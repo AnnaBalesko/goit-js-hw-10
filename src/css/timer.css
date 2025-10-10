@@ -1,0 +1,78 @@
+.timer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 24px;
+  width: 346px;
+  height: 72px;
+}
+.value {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+.label {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #2e2f42;
+  text-transform: uppercase;
+}
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 0px;
+}
+
+#datetime-picker {
+  outline: none;
+  height: 25px;
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid #808080;
+  color: inherit;
+}
+#datetime-picker:hover {
+  border: 1px solid #000000;
+  color: inherit;
+}
+
+#datetime-picker:focus {
+  border: 1px solid #4e75ff;
+  color: #000000;
+}
+
+#datetime-picker:disabled {
+  border: 1px solid #808080;
+  color: #808080;
+  background-color: #fafafa;
+}
+
+.start_btn 
+{
+  border-radius: 8px;
+  width: 75px;
+  height: 40px;
+  background-color: #4e75ff;
+  color: #fff;
+  border: none;
+  transition: background-color 250ms ease-in-out;
+}
+
+.start_btn:hover,
+.start_btn:focus {
+  background: #6c8cff;
+}
+
+.start_btn:disabled {
+  background-color: #cfcfcf;
+  color: #989898;
+}
