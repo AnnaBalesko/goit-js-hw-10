@@ -16,39 +16,73 @@ let timerId = null;
 
 startBtn.disabled = true;
 
-const options = {
+flatpickr(inputTime, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
+  onValueUpdate(selectedDates) {
     const selectedTimes = selectedDates[0];
-      if (selectedTimes > new Date()) {
-         startBtn.disabled = false;
-          userSelectedDate += selectedTimes;
-      } else {
-          startBtn.disabled = true;
-          userSelectedDate = null;
-           iziToast.error({
-              title: 'Invalid date',
-              message: 'Please choose a date in the future',
-              position: 'topRight',
-          });
-      }
-  },
-};
+    if (selectedTimes > new Date()) {
+      startBtn.disabled = false;
+      userSelectedDate = selectedTimes;
+    } else {
+      startBtn.disabled = true;
+      userSelectedDate = null;
 
-flatpickr(inputTime, options);
+      iziToast.error({
+        title: 'Invalid date',
+        message: 'Please choose a date in the future',
+        position: 'topRight',
+      });
+    }
+    return;
+  },
+});
 
 startBtn.addEventListener('click', start);
-start();
+
 function start() {
-  if (userSelectedDate) {
-      startBtn.disabled = false;
+  if (!userSelectedDate) {
+    iziToast.warning({
+      title: 'Warning',
+      message: 'Please choose a date first!',
+      position: 'topRight',
+    });
+    return;
   }
+
+  inputTime.disabled = true;
+  startBtn.disabled = true;
+  timerId = setInterval(() => {
+    const startTime = new Date();
+    const deltaTime = userSelectedDate - startTime;
+    if (deltaTime <= 0) {
+      clearInterval(timerId);
+      updateTimerUI(0, 0, 0, 0);
+      iziToast.info({
+        title: 'Time is up!',
+        message: 'The countdown has finished!',
+        position: 'topRight',
+      });
+      inputTime.disabled = false;
+      return;
+    }
+    const time = convertMs(deltaTime);
+    updateTimerUI(time);
+  }, 1000);
 }
 
+function formatTime(value) {
+  return String(value).padStart(2, '0');
+}
 
+function updateTimerUI({ days = 0, hours = 0, minutes = 0, seconds = 0 }) {
+  daysEl.textContent = formatTime(days);
+  hoursEl.textContent = formatTime(hours);
+  minsEl.textContent = formatTime(minutes);
+  secsEl.textContent = formatTime(seconds);
+}
 
 function convertMs(ms) {
   const second = 1000;

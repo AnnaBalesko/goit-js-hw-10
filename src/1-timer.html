@@ -8,15 +8,25 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
+    <header class="header">
+      <div class="container">
+         <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./1-timer.html">Timer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./2-snackbar.html">Snackbar</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
     <main>
       <div class="container">
-        <!-- <a class="back-link" href="./index.html">Go back</a> -->
-        <load
-          src="./index.html"
-          icon-path="./img/sprite.svg#logo"
-          highlight-act="active"
-        />
-
         <div class="timer">
           <input type="text" id="datetime-picker" />
           <button class="start_btn" type="button" data-start>Start</button>
