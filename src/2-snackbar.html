@@ -10,7 +10,7 @@
   <body>
     <header class="header">
       <div class="container">
-         <nav class="nav">
+        <nav class="nav">
           <ul class="nav-list">
             <li class="nav-item">
               <a class="nav-link" href="./index.html">Home</a>
@@ -27,7 +27,26 @@
     </header>
     <main>
       <div class="container">
-     
+        <form class="form">
+          <label class="input-field">
+            Delay (ms)
+            <input type="number" name="delay" required />
+          </label>
+
+          <fieldset class="radio-btn">
+            <legend class="legend-fields">State</legend>
+            <label class="radio-input">
+              <input type="radio" name="state" value="fulfilled" required />
+              Fulfilled
+            </label>
+            <label class="radio-input">
+              <input type="radio" name="state" value="rejected" required />
+              Rejected
+            </label>
+          </fieldset>
+
+          <button type="submit">Create notification</button>
+        </form>
       </div>
     </main>
     <script type="module" src="./js/2-snackbar.js"></script>
